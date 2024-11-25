@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Commission</title>
+</head>
+<body>
+<p id="display">
+
+<script type="text/javascript">
+    name = prompt('Welcome to Commission Calculator. Please enter your name to get started:')
+    let totalSales = 0;
+    let totalCommission = 0;
+    let sales = 0
+    let rate;
+
+    do{ 
+        salesAmt = prompt(`Hi ${name}, Please enter the dollar amount of your sales a single sale at a time. Enter Done when you are finished.`);
+        if (salesAmt === null){
+            continue
+        } else if (salesAmt.toLowerCase() === 'done'){
+            console.log(salesAmt);
+            break
+        } else if (salesAmt === '' || isNaN(salesAmt)){
+            continue
+        } else { 
+            sales += parseFloat(salesAmt);
+        }
+    } while(true)
+
+    // Subtotal Commission Rate  
+    if (sales <= 0){                                      // 0 and below  equals 0% commission
+        rate = 0;
+    } else if (sales >= 0.01 && sales <= 499.99) {        // $0.01 - $499.99 equals 5% commission
+        rate = 0.05;
+    } else if (sales >= 500.00 && sales <= 999.99){       // $500.00 - $999.99 equals  10% commission
+        rate = 0.1;
+    } else if (sales >= 1000){                            // $1000 and over equals 15%  commission
+        rate = 0.15;
+    };
+
+    totalCommission = sales * rate;
+    totalSales = totalCommission + sales;
+
+    //When the user enters Done, your application will make the required calculations and use a single document.write() to output the following in a nicely styled HTML page. 
+    document.write(`Hello ${name}, Here is your Weekly Commission Report.\n Your sales total is $${sales}, 
+    so your commission rate is ${rate*100}% \nYour total commission is $${totalCommission}.\n Your total earnings are $${totalSales}.`);
+
+</script>
+</p>
+</body>
+
+</html>
